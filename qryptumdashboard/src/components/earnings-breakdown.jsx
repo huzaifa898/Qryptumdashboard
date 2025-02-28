@@ -9,14 +9,14 @@ const data = [
 
 export function EarningsBreakdown() {
   return (
-    <div className="relative p-4 w-[550px] h-[260px] flex flex-col justify-center rounded-[37px] border border-[#0158C5] bg-black/15 shadow-[0px_0px_70px_rgba(1,88,197,0.25)] backdrop-blur-md">
+    <div className="relative p-4 w-full h-auto md:h-[260px] flex flex-col justify-center rounded-[37px] border border-[#0158C5] bg-black/15 shadow-[0px_0px_70px_rgba(1,88,197,0.25)] backdrop-blur-md">
       {/* Fixed Title */}
-      <h2 className="absolute top-[21px] left-[27px] w-[238px] h-[31px] text-[24px] font-[600] leading-[30.6px] tracking-[0.45px] font-['Chakra_Petch'] text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-400">
+      <h2 className="absolute top-[21px] left-[27px] w-[238px] h-[31px] text-[20px] md:text-[24px] font-[600] leading-[26px] md:leading-[30.6px] tracking-[0.45px] font-chakra text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-400">
         Earnings Breakdown
       </h2>
 
       {/* Content Wrapper */}
-      <div className="flex items-center justify-between mt-16 px-6">
+      <div className="flex flex-col md:flex-row items-center justify-between mt-16 px-6">
         {/* Legend Section - Centered Properly */}
         <div className="space-y-3">
           {data.map((item) => (
@@ -26,11 +26,11 @@ export function EarningsBreakdown() {
                 style={{ backgroundColor: item.color }}
               ></span>
               {/* Category Name - Aligned Properly */}
-              <span className="w-[68px] opacity-[0.62] font-['Chakra_Petch'] font-medium text-[12px] leading-[30.6px] tracking-[0.45px] text-left">
+              <span className="w-[68px] opacity-[0.62] font-chakra font-medium text-[10px] md:text-[12px] leading-[26px] md:leading-[30.6px] tracking-[0.45px] text-left">
                 {item.name}:
               </span>
               {/* Value - Aligned Properly */}
-              <span className="w-[111px] font-['Chakra_Petch'] font-semibold text-[14px] leading-[30.6px] tracking-[1px] text-left">
+              <span className="w-[111px] font-chakra font-semibold text-[12px] md:text-[14px] leading-[26px] md:leading-[30.6px] tracking-[1px] text-left">
                 {item.value}% ({item.value * 8} QRY)
               </span>
             </div>
@@ -38,7 +38,7 @@ export function EarningsBreakdown() {
         </div>
 
         {/* Image Section  */}
-        <div className="w-[190px] h-[190px] rounded-[10px] flex justify-center mb-8 items-center overflow-hidden">
+        <div className="w-full md:w-[190px] h-[190px] rounded-[10px] flex justify-center mb-8 items-center overflow-hidden">
           <img
             src={graph}
             alt="Earnings Breakdown"

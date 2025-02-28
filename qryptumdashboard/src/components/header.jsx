@@ -14,7 +14,7 @@ export function Header() {
             <img src={gift} alt="Gift Icon" className="w-5 h-5" />
             <div className="flex flex-col">
               <span className="text-xs text-gray-400">QRY Balance</span>
-              <span className="text-[12px] font-medium">1,201 QRY = $1,450 USD</span>
+              <span className="text-[12px] font-chakra">1,201 QRY = $1,450 USD</span>
             </div>
           </div>
 

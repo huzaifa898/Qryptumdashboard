@@ -1,7 +1,7 @@
 import React from "react";
 import { Home, Database, Award, History, Settings, LogOut } from 'lucide-react';
 import { cn } from "../lib/utils";
-import logo from '../images/logo.jpg';
+import logo from '../images/logo.png';
 
 const navigation = [
   { name: "Home", href: "#", icon: Home, current: false },
@@ -18,7 +18,7 @@ export function Sidebar() {
         <div className="flex items-center justify-center h-16 w-full mt-[30px] mb-[80px]">
           <div className="flex items-center gap-2 w-[154px] h-[39px]">
             <img src={logo || "/placeholder.svg"} alt="Qryptum Logo" className="h-[39px]" />
-            <span className="text-xl font-bold text-white whitespace-nowrap">QRYPTUM</span>
+            <span className="text-xl font-bold text-white whitespace-nowrap font-chakra">QRYPTUM</span>
           </div>
         </div>
         <nav className="w-[142px] h-[311px] flex flex-col space-y-[25px]">
@@ -28,7 +28,7 @@ export function Sidebar() {
               href={item.href}
               className={cn(
                 item.current ? "bg-[#1E2D3D] text-white" : "text-[#5D7290]",
-                "flex items-center w-[87px] h-[31px] px-2 text-sm font-medium rounded-md"
+                "flex items-center w-[87px] h-[31px] px-2 text-sm font-medium rounded-md font-chakra"
               )}
             >
               <div className="flex items-center gap-[17px]">
@@ -45,7 +45,7 @@ export function Sidebar() {
           ))}
           <a
             href="#"
-            className="flex items-center w-[87px] h-[31px] px-2 text-sm font-medium rounded-md text-[#FF3B3B]"
+            className="flex items-center w-[87px] h-[31px] px-2 text-sm font-medium rounded-md text-[#FF3B3B] font-chakra"
           >
             <div className="flex items-center gap-[17px]">
               <LogOut className="flex-shrink-0 h-5 w-5" aria-hidden="true" />

@@ -10,6 +10,9 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        chakra: ["Chakra Petch", "sans-serif"], // Add Chakra Petch font
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
