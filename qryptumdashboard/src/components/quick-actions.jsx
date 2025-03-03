@@ -33,12 +33,15 @@ export function QuickActions() {
 
       {/* Right Side: Buttons */}
       <div className="flex flex-col space-y-[10px] mt-4 md:mt-0">
-        <button className="w-full md:w-[180px] h-[44px] rounded-[896px] bg-gradient-to-r from-[#00BBF7] to-[#0158C5] text-white font-chakra font-medium text-sm leading-[21.5px] tracking-[0.45px] text-center shadow-[0px_7px_80px_-12px_#5566FF] hover:opacity-90 transition-all flex items-center justify-center">
+        <button 
+          className="w-full md:w-[180px] h-[44px] rounded-[896px] bg-gradient-to-r from-[#00BBF7] to-[#0158C5] text-white font-chakra font-medium text-sm leading-[21.5px] tracking-[0.45px] text-center shadow-[0px_7px_80px_-12px_#5566FF] hover:opacity-90 transition-all flex items-center justify-center"
+          onClick={() => navigate('/datacontract')}
+        >
           Create Data Contract
         </button>
         <button 
           className="w-full md:w-[180px] h-[44px] rounded-[896px] bg-gradient-to-r from-[#00BBF7] to-[#0158C5] text-white font-chakra font-medium text-sm leading-[21.5px] tracking-[0.45px] text-center shadow-[0px_7px_80px_-12px_#5566FF] hover:opacity-90 transition-all flex items-center justify-center"
-          onClick={() => navigate('/upload')} // Add this onClick handler
+          onClick={() => navigate('/upload')}
         >
           Upload New Data
         </button>
