@@ -3,9 +3,14 @@ import { ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Sidebar } from "./sidebar";
 import { Header } from "./header";
+import { Scanning } from "./scanning";
 
 export function Metadata() {
   const navigate = useNavigate();
+
+  const handleNext = () => {
+    navigate('/scanning');
+  };
 
   return (
     <div className="w-screen h-screen bg-[#0F2942] flex flex-col lg:flex-row">
@@ -15,7 +20,7 @@ export function Metadata() {
         
         {/* Main Content */}
         <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto">
-          <div className="w-full max-w-[1576px] h-[383px] bg-[#0A1929] rounded-[37.26px] border border-[#0158C5] p-4 sm:p-6 lg:p-8 relative mx-auto">
+          <div className="w-full max-w-[1576px] h-[398px] bg-[#0A1929] rounded-[37.26px] border border-[#0158C5] p-4 sm:p-6 lg:p-8 relative mx-auto">
             {/* Back Button and Title */}
             <div className="flex items-center gap-2 mb-6">
               <button 
@@ -77,7 +82,10 @@ export function Metadata() {
 
             {/* Next Button */}
             <div className="absolute bottom-1 right-8">
-              <button className="w-[132px] h-[40px] bg-gradient-to-b from-[#00BBF7] to-[#0158C5] text-white rounded-[896px] px-5 py-[15px] flex items-center justify-center gap-[10px] shadow-[0px_7px_80px_-12px_#5566FF] text-sm font-medium">
+              <button 
+                className="w-[132px] h-[40px] bg-gradient-to-b from-[#00BBF7] to-[#0158C5] text-white rounded-[896px] px-5 py-[15px] flex items-center justify-center gap-[10px] shadow-[0px_7px_80px_-12px_#5566FF] text-sm font-medium"
+                onClick={handleNext}
+              >
                 Next
               </button>
             </div>
