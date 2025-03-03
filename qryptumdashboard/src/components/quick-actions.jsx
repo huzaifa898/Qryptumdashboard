@@ -1,6 +1,9 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom'; 
 
 export function QuickActions() {
+  const navigate = useNavigate(); // Add this hook
+
   return (
     <div className="w-full h-auto md:h-[176px] flex-shrink-0 rounded-[37.26px] border border-[#0158C5] p-6 flex flex-col md:flex-row justify-between items-center bg-[#0F2942]">
       
@@ -33,7 +36,10 @@ export function QuickActions() {
         <button className="w-full md:w-[180px] h-[44px] rounded-[896px] bg-gradient-to-r from-[#00BBF7] to-[#0158C5] text-white font-chakra font-medium text-sm leading-[21.5px] tracking-[0.45px] text-center shadow-[0px_7px_80px_-12px_#5566FF] hover:opacity-90 transition-all flex items-center justify-center">
           Create Data Contract
         </button>
-        <button className="w-full md:w-[180px] h-[44px] rounded-[896px] bg-gradient-to-r from-[#00BBF7] to-[#0158C5] text-white font-chakra font-medium text-sm leading-[21.5px] tracking-[0.45px] text-center shadow-[0px_7px_80px_-12px_#5566FF] hover:opacity-90 transition-all flex items-center justify-center">
+        <button 
+          className="w-full md:w-[180px] h-[44px] rounded-[896px] bg-gradient-to-r from-[#00BBF7] to-[#0158C5] text-white font-chakra font-medium text-sm leading-[21.5px] tracking-[0.45px] text-center shadow-[0px_7px_80px_-12px_#5566FF] hover:opacity-90 transition-all flex items-center justify-center"
+          onClick={() => navigate('/upload')} // Add this onClick handler
+        >
           Upload New Data
         </button>
       </div>
