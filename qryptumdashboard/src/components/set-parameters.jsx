@@ -101,9 +101,9 @@ export function SetParameters() {
   }, [])
 
   return (
-    <div className="bg-[#0A1929] border border-gray-600 rounded-[37.26px] w-full md:w-[1176px] h-[684px] p-3 md:p-8 mx-auto overflow-hidden relative">
+    <div className="bg-[#0A1929] border border-gray-600 rounded-[25px] md:rounded-[37.26px] w-[95%] md:w-[1176px] h-[600px] md:h-[684px] p-3 md:p-8 mx-auto overflow-hidden relative mt-[40px] md:mt-[78px]">
       {/* Header Section */}
-      <div className="flex items-center gap-2 md:gap-4 mb-2 md:mb-8">
+      <div className="flex items-center gap-2 md:gap-4 mb-4 md:mb-8">
         <button className="w-[24px] h-[24px] transform rotate-120" onClick={() => navigate(-1)}>
           <ArrowLeft className="text-white w-full h-full" />
         </button>
@@ -201,7 +201,7 @@ export function SetParameters() {
       </div>
 
       {/* Next Button - Fixed positioning */}
-      <div className="absolute bottom-8 right-8">
+      <div className="absolute bottom-4 md:bottom-8 right-4 md:right-8">
         <button
           className="w-[100px] md:w-[132px] h-[35px] md:h-[40px] rounded-[896px] text-white flex items-center justify-center bg-gradient-to-b from-[#00BBF7] to-[#0158C5] px-[10px] md:px-[20px] py-[10px] md:py-[15px] text-xs md:text-base"
           onClick={() => navigate("/encryption-security")}

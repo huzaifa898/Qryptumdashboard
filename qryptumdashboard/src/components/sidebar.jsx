@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { Home, Database, Award, History, Settings, LogOut, Menu, X } from "lucide-react";
+import {
+  Home,
+  Database,
+  Award,
+  History,
+  Settings,
+  LogOut,
+  ChevronRight,
+  X,
+} from "lucide-react";
 import { cn } from "../lib/utils";
 import logo from "../images/logo.png";
 
@@ -20,25 +29,34 @@ export function Sidebar() {
 
   return (
     <>
-      {/* Mobile Menu Button */}
-      <button
-        onClick={toggleSidebar}
-        className="md:hidden fixed top-5 left-5 z-50 bg-[#2088FF] text-white p-2 rounded-lg shadow-md"
-      >
-        {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
-      </button>
+      {/* Fancy Mobile Toggle Button (Not Fixed on Scroll) */}
+      <div className="md:hidden absolute top-5 left-5 z-50">
+        <button
+          onClick={toggleSidebar}
+          className={`p-2 rounded-full shadow-lg transition-all duration-300 ${
+            isSidebarOpen ? "bg-red-500" : "bg-[#2088FF]"
+          }`}
+        >
+          <ChevronRight
+            size={22}
+            className={`text-white transition-transform duration-300 ${
+              isSidebarOpen ? "rotate-180" : "rotate-0"
+            }`}
+          />
+        </button>
+      </div>
 
       {/* Sidebar */}
       <div
-        className={`fixed md:relative z-50 md:z-40 left-0 top-0 w-[230px] bg-[#0A1929] border border-[#2088FF] rounded-[40px] mt-5 transition-transform md:translate-x-0 ${
-          isSidebarOpen ? "translate-x-0 h-[90vh] overflow-y-auto" : "-translate-x-full h-[90vh]"
-        } md:block md:h-[880px] md:overflow-visible`}
+        className={`absolute md:relative z-50 md:z-40 left-0 top-0 w-[230px] bg-[#0A1929] border border-[#2088FF] rounded-[40px] mt-5 transition-transform md:translate-x-0
+          ${isSidebarOpen ? "translate-x-0 h-[90vh] overflow-y-auto" : "-translate-x-full h-[90vh]"} 
+          md:block md:h-[880px] md:overflow-visible`}
       >
         <div className="flex flex-col items-center relative">
           {/* Close Button (Mobile Only) */}
           <button
             onClick={toggleSidebar}
-            className="md:hidden absolute top-3 right-3 bg-[#FF3B3B] text-white p-1 rounded-full"
+            className="md:hidden absolute top-3 right-3 bg-[#FF3B3B] text-white p-1 rounded-full shadow-md"
           >
             <X size={20} />
           </button>
