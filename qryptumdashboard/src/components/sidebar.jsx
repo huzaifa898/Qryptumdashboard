@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Home, Database, Award, History, Settings, LogOut } from 'lucide-react';
+import { Home, Database, Award, History, Settings, LogOut, Menu, X } from "lucide-react";
 import { cn } from "../lib/utils";
-import logo from '../images/logo.png';
+import logo from "../images/logo.png";
 
 const navigation = [
   { name: "Home", href: "#", icon: Home, current: false },
@@ -11,18 +11,50 @@ const navigation = [
   { name: "Settings", href: "#", icon: Settings, current: false },
 ];
 
-export function Sidebar({ isSidebarOpen, toggleSidebar }) {
+export function Sidebar() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
-    <div className={`fixed md:relative z-40 ${isSidebarOpen ? "block" : "hidden"} md:block`}>
-      <div className="flex flex-col w-[230px] h-full md:h-[880px] flex-shrink-0 bg-[#0A1929] border border-[#2088FF] rounded-[40px] mt-5">
-        <div className="flex-1 flex flex-col items-center min-h-0">
-          <div className="flex items-center justify-center h-16 w-full mt-[30px] mb-[80px]">
+    <>
+      {/* Mobile Menu Button */}
+      <button
+        onClick={toggleSidebar}
+        className="md:hidden fixed top-5 left-5 z-50 bg-[#2088FF] text-white p-2 rounded-lg shadow-md"
+      >
+        {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
+      </button>
+
+      {/* Sidebar */}
+      <div
+        className={`fixed md:relative z-50 md:z-40 left-0 top-0 w-[230px] bg-[#0A1929] border border-[#2088FF] rounded-[40px] mt-5 transition-transform md:translate-x-0 ${
+          isSidebarOpen ? "translate-x-0 h-[90vh] overflow-y-auto" : "-translate-x-full h-[90vh]"
+        } md:block md:h-[880px] md:overflow-visible`}
+      >
+        <div className="flex flex-col items-center relative">
+          {/* Close Button (Mobile Only) */}
+          <button
+            onClick={toggleSidebar}
+            className="md:hidden absolute top-3 right-3 bg-[#FF3B3B] text-white p-1 rounded-full"
+          >
+            <X size={20} />
+          </button>
+
+          {/* Logo */}
+          <div className="flex items-center justify-center h-16 w-full mt-[30px] mb-[40px]">
             <div className="flex items-center gap-2 w-[154px] h-[39px]">
               <img src={logo || "/placeholder.svg"} alt="Qryptum Logo" className="h-[39px]" />
-              <span className="text-xl font-bold text-white whitespace-nowrap font-chakra">QRYPTUM</span>
+              <span className="text-xl font-bold text-white whitespace-nowrap font-chakra">
+                QRYPTUM
+              </span>
             </div>
           </div>
-          <nav className="w-[142px] h-[311px] flex flex-col space-y-[25px]">
+
+          {/* Navigation Links */}
+          <nav className="w-[142px] flex flex-col space-y-[25px]">
             {navigation.map((item) => (
               <a
                 key={item.name}
@@ -44,6 +76,7 @@ export function Sidebar({ isSidebarOpen, toggleSidebar }) {
                 </div>
               </a>
             ))}
+            {/* Logout */}
             <a
               href="#"
               className="flex items-center w-[87px] h-[31px] px-2 text-sm font-medium rounded-md text-[#FF3B3B] font-chakra"
@@ -56,6 +89,6 @@ export function Sidebar({ isSidebarOpen, toggleSidebar }) {
           </nav>
         </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -8,6 +8,9 @@ import { Confirmation } from './components/confirmation';
 import { PaymentConfirmed } from './components/paymentconfirmed';
 import Datacontract from './components/datacontract';
 import Parmeters from './components/parmeters'; // Corrected import statement
+import EncryptionSecurity from './components/encryptionsecurity'; // Corrected import statement
+import PreviewMint from './components/previewmint'; // Corrected import statement
+import MintConfirmed from './components/mintconfirmed'; // Corrected import statement
 
 function App() {
   return (
@@ -21,6 +24,9 @@ function App() {
         <Route path="/payment-confirmed" element={<PaymentConfirmed />} />
         <Route path="/datacontract" element={<Datacontract />} />
         <Route path="/parmeters" element={<Parmeters />} />
+        <Route path="/encryption-security" element={<EncryptionSecurity />} />
+        <Route path="/previewmint" element={<PreviewMint />} /> {/* Corrected route name */}
+        <Route path="/mintconfirmed" element={<MintConfirmed />} />
       </Routes>
     </Router>
   );

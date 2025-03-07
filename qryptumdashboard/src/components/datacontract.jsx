@@ -1,128 +1,203 @@
-import React from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
-import { Sidebar } from './sidebar';
-import { Header } from './header';
-import { ArrowLeft } from 'lucide-react'; // Changed to ArrowLeft for back functionality
-import { ArrowRight } from 'lucide-react'; // Added ArrowRight for next functionality
+"use client"
+
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { Sidebar } from "./sidebar"
+import { Header } from "./header"
+import { ArrowLeft, ArrowRight, ChevronDown } from "lucide-react"
 
 export function Datacontract() {
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate()
+
+  // State for selected values
+  const [industry, setIndustry] = useState("Healthcare")
+  const [roles, setRoles] = useState("Doctors")
+  const [restrictions, setRestrictions] = useState("Diagnostics only")
+
+  // State for dropdown visibility
+  const [industryOpen, setIndustryOpen] = useState(false)
+  const [rolesOpen, setRolesOpen] = useState(false)
+  const [restrictionsOpen, setRestrictionsOpen] = useState(false)
 
   const handleNextClick = () => {
-    navigate("/parmeters"); // Navigate to parameters page
-  };
+    navigate("/parmeters")
+  }
 
   const handleBackClick = () => {
-    navigate(-1); // Navigate to the previous page
-  };
+    navigate(-1)
+  }
 
   return (
-    <div className="w-screen h-screen bg-[#0F2942] flex">
+    <div className="w-screen h-screen bg-[#0F2942] flex flex-col md:flex-row">
       <Sidebar />
       <div className="flex-1 flex flex-col">
         <Header />
         <main className="flex-1 p-4 md:p-6">
-          <div className="max-w-[1576px] w-full h-[355px] bg-[#0A1929] border border-[#0158C5] rounded-[37.26px] flex flex-col p-4">
-            {/* Back Arrow and Define Rules Heading */}
+          <div className="max-w-[1576px] w-full h-auto bg-[#0A1929] border border-[#0158C5] rounded-[37.26px] flex flex-col p-4">
             <div className="flex items-center mb-4">
               <button className="text-white hover:text-gray-300 mr-4" onClick={handleBackClick}>
                 <ArrowLeft className="w-6 h-6" />
               </button>
-              <h1 className="text-white font-chakra font-semibold text-[24px] leading-[30.6px] tracking-[0.45px] w-[153px] h-[31px]">
+              <h1 className="text-white font-chakra font-semibold text-[24px] leading-[30.6px] tracking-[0.45px]">
                 Define Rules
               </h1>
             </div>
 
-            {/* Input Fields with Labels in One Line */}
             <div className="flex flex-wrap gap-4 mb-4">
-              {/* Contract Name Label and Input */}
               <div className="flex flex-col w-full md:w-[341px]">
-                <label className="text-white font-chakra font-medium text-[14px] leading-[20px] tracking-[0.2px] mb-2 w-full md:w-[341px] h-[20px]">
+                <label className="text-white font-chakra font-medium text-[14px] leading-[20px] tracking-[0.2px] mb-2">
                   Contract Name
                 </label>
-                <div className="w-full md:w-[341px] h-[41px] bg-[#1E2A3A] border border-[#0158C5] rounded-[48px] flex items-center px-[12px] py-[11px] gap-[10px]">
+                <div className="w-full h-[41px] bg-[#FFFFFF] rounded-[48px] flex items-center px-[12px] py-[11px] gap-[10px]">
                   <input
                     type="text"
                     placeholder="Type here..."
-                    className="bg-transparent text-white font-chakra font-medium text-[16px] leading-[30.6px] tracking-[0.45px] outline-none w-full"
+                    className="bg-transparent text-[#0A1929] font-chakra font-medium text-[16px] leading-[30.6px] tracking-[0.45px] outline-none w-full"
                   />
                 </div>
               </div>
 
-              {/* Industry Label and Dropdown */}
+              {/* Custom Industry Dropdown */}
               <div className="flex flex-col w-full md:w-[341px]">
-                <label className="text-white font-chakra font-medium text-[14px] leading-[20px] tracking-[0.2px] mb-2 w-full md:w-[341px] h-[20px]">
+                <label className="text-white font-chakra font-medium text-[14px] leading-[20px] tracking-[0.2px] mb-2">
                   Industry
                 </label>
-                <div className="w-full md:w-[341px] h-[41px] bg-[#1E2A3A] border border-[#0158C5] rounded-[48px] flex items-center px-[12px] py-[11px] gap-[10px]">
-                  <select
-                    className="bg-transparent text-white font-chakra font-medium text-[16px] leading-[30.6px] tracking-[0.45px] outline-none w-full appearance-none"
+                <div className="relative">
+                  <div
+                    className="w-full h-[41px] bg-[#FFFFFF] rounded-[48px] flex items-center px-[12px] py-[11px] gap-[10px] cursor-pointer"
+                    onClick={() => setIndustryOpen(!industryOpen)}
                   >
-                    <option value="" disabled selected>Healthcare</option>
-                    <option value="healthcare">Healthcare</option>
-                    <option value="finance">Finance</option>
-                  </select>
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                  </svg>
+                    <div className="bg-[#0158C5] text-white px-2 py-0.5 rounded-md font-chakra font-medium text-[16px]">
+                      {industry}
+                    </div>
+                    <div className="flex-grow"></div>
+                    <ChevronDown className="w-5 h-5 text-[#0A1929]" />
+                  </div>
+
+                  {industryOpen && (
+                    <div className="absolute top-[45px] left-0 w-full bg-[#0A1929] border border-[#0158C5] rounded-md shadow-lg z-10">
+                      <div
+                        className="px-4 py-2 text-white hover:bg-[#0158C5] cursor-pointer transition-colors duration-150"
+                        onClick={() => {
+                          setIndustry("Healthcare")
+                          setIndustryOpen(false)
+                        }}
+                      >
+                        Healthcare
+                      </div>
+                      <div
+                        className="px-4 py-2 text-white hover:bg-[#0158C5] cursor-pointer transition-colors duration-150"
+                        onClick={() => {
+                          setIndustry("Finance")
+                          setIndustryOpen(false)
+                        }}
+                      >
+                        Finance
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
 
-              {/* Allowed Roles Label and Dropdown */}
+              {/* Custom Roles Dropdown */}
               <div className="flex flex-col w-full md:w-[341px]">
-                <label className="text-white font-chakra font-medium text-[14px] leading-[20px] tracking-[0.2px] mb-2 w-full md:w-[341px] h-[20px]">
+                <label className="text-white font-chakra font-medium text-[14px] leading-[20px] tracking-[0.2px] mb-2">
                   Allowed Roles
                 </label>
-                <div className="w-full md:w-[341px] h-[41px] bg-[#1E2A3A] border border-[#0158C5] rounded-[48px] flex items-center px-[12px] py-[11px] gap-[10px]">
-                  <select
-                    className="bg-transparent text-white font-chakra font-medium text-[16px] leading-[30.6px] tracking-[0.45px] outline-none w-full appearance-none"
+                <div className="relative">
+                  <div
+                    className="w-full h-[41px] bg-[#FFFFFF] rounded-[48px] flex items-center px-[12px] py-[11px] gap-[10px] cursor-pointer"
+                    onClick={() => setRolesOpen(!rolesOpen)}
                   >
-                    <option value="" disabled selected>Doctors</option>
-                    <option value="doctors">Doctors</option>
-                    <option value="nurses">Nurses</option>
-                  </select>
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                  </svg>
+                    <div className="bg-[#0158C5] text-white px-2 py-0.5 rounded-md font-chakra font-medium text-[16px]">
+                      {roles}
+                    </div>
+                    <div className="flex-grow"></div>
+                    <ChevronDown className="w-5 h-5 text-[#0A1929]" />
+                  </div>
+
+                  {rolesOpen && (
+                    <div className="absolute top-[45px] left-0 w-full bg-[#0A1929] border border-[#0158C5] rounded-md shadow-lg z-10">
+                      <div
+                        className="px-4 py-2 text-white hover:bg-[#0158C5] cursor-pointer transition-colors duration-150"
+                        onClick={() => {
+                          setRoles("Doctors")
+                          setRolesOpen(false)
+                        }}
+                      >
+                        Doctors
+                      </div>
+                      <div
+                        className="px-4 py-2 text-white hover:bg-[#0158C5] cursor-pointer transition-colors duration-150"
+                        onClick={() => {
+                          setRoles("Nurses")
+                          setRolesOpen(false)
+                        }}
+                      >
+                        Nurses
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
 
-            {/* Usage Restrictions Label and Dropdown */}
-            <div className="flex flex-col gap-4 mb-4">
-              <div className="flex flex-col">
-                <label className="text-white font-chakra font-medium text-[14px] leading-[20px] tracking-[0.2px] mb-2 w-[341px] h-[20px]">
+            <div className="flex flex-wrap gap-4 mb-4">
+              {/* Custom Restrictions Dropdown */}
+              <div className="flex flex-col w-full md:w-[341px]">
+                <label className="text-white font-chakra font-medium text-[14px] leading-[20px] tracking-[0.2px] mb-2">
                   Usage Restrictions
                 </label>
-                <div className="w-[341px] h-[41px] bg-[#1E2A3A] border border-[#0158C5] rounded-[48px] flex items-center px-[12px] py-[11px] gap-[10px]">
-                  <select
-                    className="bg-transparent text-white font-chakra font-medium text-[16px] leading-[30.6px] tracking-[0.45px] outline-none w-full appearance-none"
+                <div className="relative">
+                  <div
+                    className="w-full h-[41px] bg-[#FFFFFF] rounded-[48px] flex items-center px-[12px] py-[11px] gap-[10px] cursor-pointer"
+                    onClick={() => setRestrictionsOpen(!restrictionsOpen)}
                   >
-                    <option value="" disabled selected>Diagnostics only</option>
-                    <option value="diagnostics">Diagnostics only</option>
-                    <option value="commercial">Commercial use</option>
-                  </select>
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                  </svg>
+                    <div className="bg-[#0158C5] text-white px-2 py-0.5 rounded-md font-chakra font-medium text-[16px]">
+                      {restrictions}
+                    </div>
+                    <div className="flex-grow"></div>
+                    <ChevronDown className="w-5 h-5 text-[#0A1929]" />
+                  </div>
+
+                  {restrictionsOpen && (
+                    <div className="absolute top-[45px] left-0 w-full bg-[#0A1929] border border-[#0158C5] rounded-md shadow-lg z-10">
+                      <div
+                        className="px-4 py-2 text-white hover:bg-[#0158C5] cursor-pointer transition-colors duration-150"
+                        onClick={() => {
+                          setRestrictions("Diagnostics only")
+                          setRestrictionsOpen(false)
+                        }}
+                      >
+                        Diagnostics only
+                      </div>
+                      <div
+                        className="px-4 py-2 text-white hover:bg-[#0158C5] cursor-pointer transition-colors duration-150"
+                        onClick={() => {
+                          setRestrictions("Commercial use")
+                          setRestrictionsOpen(false)
+                        }}
+                      >
+                        Commercial use
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
 
-            {/* Checkbox */}
             <div className="flex items-center mb-4">
-              <input
-                type="checkbox"
-                className="w-4 h-4 text-[#0158C5] bg-[#1E2A3A] border border-[#0158C5] rounded focus:ring-0"
-              />
+              <input type="checkbox" className="w-4 h-4 text-[#0158C5] bg-[#1E2A3A] rounded focus:ring-0" />
               <label className="text-white font-chakra font-medium text-[16px] leading-[30.6px] tracking-[0.45px] ml-2">
                 Allow anonymized data for research?
               </label>
             </div>
 
-            {/* Next Button Inside Box on Right Side */}
             <div className="flex justify-end mt-auto">
-              <button className="bg-[#0158C5] text-white font-chakra font-medium text-[16px] leading-[30.6px] tracking-[0.45px] rounded-[48px] px-6 py-2 flex items-center gap-2" onClick={handleNextClick}>
+              <button
+                className="bg-gradient-to-b from-[#00BBF7] to-[#0158C5] w-[132px] h-[40px] text-white font-chakra font-medium text-[16px] leading-[30.6px] tracking-[0.45px] rounded-[48px] px-[20px] py-[15px] flex items-center justify-center gap-2"
+                onClick={handleNextClick}
+              >
                 <span>Next</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
@@ -131,7 +206,8 @@ export function Datacontract() {
         </main>
       </div>
     </div>
-  );
+  )
 }
 
-export default Datacontract;
+export default Datacontract
+
